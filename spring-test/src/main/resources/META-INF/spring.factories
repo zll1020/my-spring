@@ -1,0 +1,15 @@
+# Default TestExecutionListeners for the Spring TestContext Framework
+#
+org.springframework.demo.test.context.TestExecutionListener = \
+	org.springframework.demo.test.context.web.ServletTestExecutionListener,\
+	org.springframework.demo.test.context.support.DirtiesContextBeforeModesTestExecutionListener,\
+	org.springframework.demo.test.context.support.DependencyInjectionTestExecutionListener,\
+	org.springframework.demo.test.context.support.DirtiesContextTestExecutionListener,\
+	org.springframework.demo.test.context.transaction.TransactionalTestExecutionListener,\
+	org.springframework.demo.test.context.jdbc.SqlScriptsTestExecutionListener,\
+	org.springframework.demo.test.context.event.EventPublishingTestExecutionListener
+
+# Default ContextCustomizerFactory implementations for the Spring TestContext Framework
+#
+org.springframework.demo.test.context.ContextCustomizerFactory = \
+	org.springframework.demo.test.context.web.socket.MockServerContainerContextCustomizerFactory

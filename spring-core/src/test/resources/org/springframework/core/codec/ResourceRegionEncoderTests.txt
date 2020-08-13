@@ -1,0 +1,1 @@
+Spring Framework demo.test resource content.
