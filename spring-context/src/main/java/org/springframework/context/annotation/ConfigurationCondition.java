@@ -31,6 +31,7 @@ public interface ConfigurationCondition extends Condition {
 
 	/**
 	 * Return the {@link ConfigurationPhase} in which the condition should be evaluated.
+	 * 条件注解的生效阶段。只有在ConfigurationPhase中定义的两种阶段下才会生效
 	 */
 	ConfigurationPhase getConfigurationPhase();
 

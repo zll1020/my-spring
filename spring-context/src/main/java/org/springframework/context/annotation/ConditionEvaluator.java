@@ -41,6 +41,11 @@ import org.springframework.util.MultiValueMap;
 /**
  * 状况评估的类哈，，专门看有没有condition 注解，什么情况下加载他，什么情况下不加载他哈
  * Internal class used to evaluate {@link Conditional} annotations.
+ * 完成条件注解的解析和判断
+ * 在Spring容器的refresh过程中，只有跟解析或者注册bean有关系的类都会使用ConditionEvaluator完成条件注解的判断，
+ * 这个过程中一些类不满足条件的话就会被skip。这些类比如有AnnotatedBeanDefinitionReader、
+ * ConfigurationClassBeanDefinitionReader、ConfigurationClassParse、ClassPathScanningCandidateComponentProvider等。
+ * 比如ConfigurationClassParser的构造函数会初始化内部属性conditionEvaluator
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
@@ -85,19 +90,25 @@ class ConditionEvaluator {
 	 * @return
 	 */
 	public boolean shouldSkip(@Nullable AnnotatedTypeMetadata metadata, @Nullable ConfigurationPhase phase) {
+		// 如果这个类没有被@Conditional注解所修饰，不会skip
 		if (metadata == null || !metadata.isAnnotated(Conditional.class.getName())) {
 			return false;
 		}
 
+		// 如果参数中沒有设置条件注解的生效阶段
 		if (phase == null) {
+			// 是配置类的话直接使用PARSE_CONFIGURATION阶段
 			if (metadata instanceof AnnotationMetadata &&
 					ConfigurationClassUtils.isConfigurationCandidate((AnnotationMetadata) metadata)) {
 				return shouldSkip(metadata, ConfigurationPhase.PARSE_CONFIGURATION);
 			}
+			// 否则使用REGISTER_BEAN阶段
 			return shouldSkip(metadata, ConfigurationPhase.REGISTER_BEAN);
 		}
 
+		// 要解析的配置类的条件集合
 		List<Condition> conditions = new ArrayList<>();
+		// 获取配置类的条件注解得到条件数据，并添加到集合中
 		for (String[] conditionClasses : getConditionClasses(metadata)) {
 			for (String conditionClass : conditionClasses) {
 				Condition condition = getCondition(conditionClass, this.context.getClassLoader());
@@ -105,6 +116,7 @@ class ConditionEvaluator {
 			}
 		}
 
+		// 对条件集合做个排序
 		AnnotationAwareOrderComparator.sort(conditions);
 
 		for (Condition condition : conditions) {
@@ -112,6 +124,8 @@ class ConditionEvaluator {
 			if (condition instanceof ConfigurationCondition) {
 				requiredPhase = ((ConfigurationCondition) condition).getConfigurationPhase();
 			}
+			// 没有这个解析类不需要阶段的判断或者解析类和参数中的阶段一致才会继续进行
+			// 阶段一致切不满足条件的话，返回true并跳过这个bean的解析
 			if ((requiredPhase == null || requiredPhase == phase) && !condition.matches(this.context, metadata)) {
 				return true;
 			}

@@ -64,6 +64,8 @@ public @interface Conditional {
 	/**
 	 * All {@link Condition Conditions} that must {@linkplain Condition#matches match}
 	 * in order for the component to be registered.
+	 * @Conditional注解属性中可以持有多个Condition接口的实现类，
+	 * 所有的Condition接口需要全部匹配成功后这个@Conditional修饰的组件才有资格被注册
 	 */
 	Class<? extends Condition>[] value();
 

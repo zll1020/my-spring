@@ -32,6 +32,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  * of conditions that interact with {@code @Configuration} beans consider the
  * {@link ConfigurationCondition} interface.
  *
+ * 用于匹配组件是否有资格被容器注册
+ *
  * @author Phillip Webb
  * @since 4.0
  * @see ConfigurationCondition
@@ -48,6 +50,8 @@ public interface Condition {
 	 * or {@link org.springframework.core.type.MethodMetadata method} being checked
 	 * @return {@code true} if the condition matches and the component can be registered,
 	 * or {@code false} to veto the annotated component's registration
+	 *
+	 * // ConditionContext内部会存储Spring容器、应用程序环境信息、资源加载器、类加载器
 	 */
 	boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
 
