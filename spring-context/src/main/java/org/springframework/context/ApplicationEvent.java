@@ -26,6 +26,8 @@ import java.util.EventObject;
  * @author Juergen Hoeller
  * @see org.springframework.context.ApplicationListener
  * @see org.springframework.context.event.EventListener
+ *
+ * 事件
  */
 public abstract class ApplicationEvent extends EventObject {
 
@@ -40,6 +42,8 @@ public abstract class ApplicationEvent extends EventObject {
 	 * Create a new {@code ApplicationEvent}.
 	 * @param source the object on which the event initially occurred or with
 	 * which the event is associated (never {@code null})
+	 *
+	 * 通过构造器参数source得到事件源
 	 */
 	public ApplicationEvent(Object source) {
 		super(source);

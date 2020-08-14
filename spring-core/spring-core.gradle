@@ -1,5 +1,6 @@
 description = "Spring Core"
 
+apply plugin: "groovy"
 apply plugin: "kotlin"
 
 dependencyManagement {

@@ -135,6 +135,9 @@ public interface BeanFactory {
 	 * @return an instance of the bean
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the specified name
 	 * @throws BeansException if the bean could not be obtained
+	 *
+	 * org.springframework.beans.factory.support.StaticListableBeanFactory#getBean(java.lang.String)
+	 * 内部使用org.springframework.beans.factory.FactoryBean#getObject()获取Object
 	 */
 	Object getBean(String name) throws BeansException;
 

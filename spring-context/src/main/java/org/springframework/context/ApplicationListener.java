@@ -35,6 +35,8 @@ import java.util.EventListener;
  * @see org.springframework.context.ApplicationEvent
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.event.EventListener
+ *
+ * 事件监听器，监听一个事件
  */
 @FunctionalInterface
 public interface ApplicationListener<E extends ApplicationEvent> extends EventListener {
@@ -42,6 +44,8 @@ public interface ApplicationListener<E extends ApplicationEvent> extends EventLi
 	/**
 	 * Handle an application event.
 	 * @param event the event to respond to
+	 *
+	 * 接受一个ApplicationEvent或其子类对象作为参数,在方法体中,可以通过不同对Event类的判断来进行相应的处理
 	 */
 	void onApplicationEvent(E event);
 

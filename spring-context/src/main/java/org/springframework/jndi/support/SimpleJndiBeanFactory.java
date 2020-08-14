@@ -253,7 +253,9 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 
 	@SuppressWarnings("unchecked")
 	private <T> T doGetSingleton(String name, @Nullable Class<T> requiredType) throws NamingException {
+		// 锁定缓存 锁定全局变量并进行处理
 		synchronized (this.singletonObjects) {
+			// 检查缓存中是否存在实例
 			Object singleton = this.singletonObjects.get(name);
 			if (singleton != null) {
 				if (requiredType != null && !requiredType.isInstance(singleton)) {

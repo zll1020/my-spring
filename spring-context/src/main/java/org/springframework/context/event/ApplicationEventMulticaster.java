@@ -33,6 +33,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Stephane Nicoll
  * @see ApplicationListener
+ *
+ * 事件广播器,作用是把Applicationcontext发布的Event广播给所有的监听器
  */
 public interface ApplicationEventMulticaster {
 

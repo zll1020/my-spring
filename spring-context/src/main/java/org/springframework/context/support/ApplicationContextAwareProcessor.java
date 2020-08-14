@@ -75,6 +75,15 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	}
 
 
+	/**
+	 * 这个类会在Spring刷新容器准备 beanFactory的时候会加进去，这里就会被调用，而调用里面会检查Bean是不是
+	 * EnvironmentAware, EmbeddedValueResolverAware, ResourceLoaderAware, ApplicationEventPublisherAware,
+	 * MessageSourceAware, ApplicationContextAware的实现类
+	 * @param bean the new bean instance
+	 * @param beanName the name of the bean
+	 * @return
+	 * @throws BeansException
+	 */
 	@Override
 	@Nullable
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
