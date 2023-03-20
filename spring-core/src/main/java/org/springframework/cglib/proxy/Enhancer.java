@@ -89,6 +89,7 @@ import org.springframework.cglib.core.WeakCacheKey;
  * For an almost drop-in replacement for
  * <code>java.lang.reflect.Proxy</code>, see the {@link Proxy} class.
  */
+
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class Enhancer extends AbstractClassGenerator {
 
