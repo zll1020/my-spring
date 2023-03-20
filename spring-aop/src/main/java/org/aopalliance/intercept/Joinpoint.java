@@ -59,6 +59,7 @@ public interface Joinpoint {
 	 * Return the static part of this joinpoint.
 	 * <p>The static part is an accessible object on which a chain of
 	 * interceptors are installed.
+	 * AccessibleObject 基于Java的反射
 	 */
 	AccessibleObject getStaticPart();
 

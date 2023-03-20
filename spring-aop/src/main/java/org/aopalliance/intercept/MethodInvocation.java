@@ -27,13 +27,14 @@ import java.lang.reflect.Method;
  *
  * @author Rod Johnson
  * @see MethodInterceptor
+ * 具体到某一个方法上面
  */
 public interface MethodInvocation extends Invocation {
 
 	/**
 	 * Get the method being called.
 	 * <p>This method is a friendly implementation of the
-	 * {@link Joinpoint#getStaticPart()} method (same result).
+	 * {@link Joinpoint#getStaticPart()} method (same result). 同一个对象
 	 * @return the method being called
 	 */
 	Method getMethod();

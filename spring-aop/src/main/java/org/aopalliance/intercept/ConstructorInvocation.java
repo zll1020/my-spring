@@ -27,7 +27,8 @@ import java.lang.reflect.Constructor;
  *
  * @author Rod Johnson
  * @see ConstructorInterceptor
- */
+ * 没有被Spring实现
+ * */
 public interface ConstructorInvocation extends Invocation {
 
 	/**
