@@ -35,6 +35,7 @@ public interface Pointcut {
 	/**
 	 * Return the ClassFilter for this pointcut.
 	 * @return the ClassFilter (never {@code null})
+	 * 类过滤
 	 */
 	ClassFilter getClassFilter();
 

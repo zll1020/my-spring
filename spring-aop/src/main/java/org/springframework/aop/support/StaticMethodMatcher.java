@@ -28,11 +28,22 @@ import org.springframework.aop.MethodMatcher;
  */
 public abstract class StaticMethodMatcher implements MethodMatcher {
 
+	/**
+	 * 方法本来就是存在的
+	 * @return
+	 */
 	@Override
 	public final boolean isRuntime() {
 		return false;
 	}
 
+	/**
+	 * 静态的信息，不支持参数
+	 * @param method the candidate method
+	 * @param targetClass the target class
+	 * @param args arguments to the method
+	 * @return
+	 */
 	@Override
 	public final boolean matches(Method method, Class<?> targetClass, Object... args) {
 		// should never be invoked because isRuntime() returns false

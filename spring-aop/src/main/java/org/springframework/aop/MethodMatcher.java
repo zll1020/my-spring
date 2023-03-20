@@ -56,6 +56,7 @@ public interface MethodMatcher {
 	 * @param method the candidate method
 	 * @param targetClass the target class
 	 * @return whether or not this method matches statically
+	 * 方法是否匹配
 	 */
 	boolean matches(Method method, Class<?> targetClass);
 
@@ -68,6 +69,7 @@ public interface MethodMatcher {
 	 * @return whether or not a runtime match via the 3-arg
 	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} method
 	 * is required if static matching passed
+	 * 方法是不是运行时的，动态创建的
 	 */
 	boolean isRuntime();
 
@@ -84,6 +86,7 @@ public interface MethodMatcher {
 	 * @param args arguments to the method
 	 * @return whether there's a runtime match
 	 * @see MethodMatcher#matches(Method, Class)
+	 * 匹配带有参数情况的（比如入参 用户ID取模是否等于 5）
 	 */
 	boolean matches(Method method, Class<?> targetClass, Object... args);
 
