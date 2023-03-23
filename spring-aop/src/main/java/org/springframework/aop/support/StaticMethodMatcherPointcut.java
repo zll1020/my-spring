@@ -29,6 +29,7 @@ import org.springframework.aop.Pointcut;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
+ * 静态point cut
  */
 public abstract class StaticMethodMatcherPointcut extends StaticMethodMatcher implements Pointcut {
 

@@ -31,6 +31,7 @@ import org.springframework.util.Assert;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
+ * 工具
  */
 public abstract class Pointcuts {
 

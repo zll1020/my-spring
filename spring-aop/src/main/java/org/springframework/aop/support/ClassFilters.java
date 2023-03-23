@@ -90,6 +90,7 @@ public abstract class ClassFilters {
 	@SuppressWarnings("serial")
 	private static class UnionClassFilter implements ClassFilter, Serializable {
 
+		// 链表的方式
 		private ClassFilter[] filters;
 
 		public UnionClassFilter(ClassFilter[] filters) {

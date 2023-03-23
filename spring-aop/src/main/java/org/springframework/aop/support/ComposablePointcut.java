@@ -106,6 +106,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 	 * Apply a union with the given ClassFilter.
 	 * @param other the ClassFilter to apply a union with
 	 * @return this composable pointcut (for call chaining)
+	 * 并集 ||
 	 */
 	public ComposablePointcut union(ClassFilter other) {
 		this.classFilter = ClassFilters.union(this.classFilter, other);
@@ -116,6 +117,7 @@ public class ComposablePointcut implements Pointcut, Serializable {
 	 * Apply an intersection with the given ClassFilter.
 	 * @param other the ClassFilter to apply an intersection with
 	 * @return this composable pointcut (for call chaining)
+	 * 交集 &&
 	 */
 	public ComposablePointcut intersection(ClassFilter other) {
 		this.classFilter = ClassFilters.intersection(this.classFilter, other);

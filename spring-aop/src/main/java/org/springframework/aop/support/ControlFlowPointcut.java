@@ -35,6 +35,7 @@ import org.springframework.util.ObjectUtils;
  * @author Rod Johnson
  * @author Rob Harrop
  * @author Juergen Hoeller
+ * 控制流
  */
 @SuppressWarnings("serial")
 public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher, Serializable {
@@ -94,6 +95,7 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	public boolean matches(Method method, Class<?> targetClass, Object... args) {
 		this.evaluations.incrementAndGet();
 
+		// getStackTrace() 有性能上的损失，可以用Java 9特性实现
 		for (StackTraceElement element : new Throwable().getStackTrace()) {
 			if (element.getClassName().equals(this.clazz.getName()) &&
 					(this.methodName == null || element.getMethodName().equals(this.methodName))) {
