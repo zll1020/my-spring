@@ -80,6 +80,7 @@ import org.springframework.util.StringUtils;
  * @author Ramnivas Laddad
  * @author Dave Syer
  * @since 2.0
+ * AspectJ pointcut 实现
  */
 @SuppressWarnings("serial")
 public class AspectJExpressionPointcut extends AbstractExpressionPointcut
@@ -87,6 +88,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 	private static final Set<PointcutPrimitive> SUPPORTED_PRIMITIVES = new HashSet<>();
 
+	// 十种支持类型
 	static {
 		SUPPORTED_PRIMITIVES.add(PointcutPrimitive.EXECUTION);
 		SUPPORTED_PRIMITIVES.add(PointcutPrimitive.ARGS);
@@ -110,12 +112,18 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 	private Class<?>[] pointcutParameterTypes = new Class<?>[0];
 
+	/**
+	 * 和IOC容器打通了
+	 */
 	@Nullable
 	private BeanFactory beanFactory;
 
 	@Nullable
 	private transient ClassLoader pointcutClassLoader;
 
+	/**
+	 * 匹配表达式
+	 */
 	@Nullable
 	private transient PointcutExpression pointcutExpression;
 
@@ -216,6 +224,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 	/**
 	 * Build the underlying AspectJ pointcut expression.
+	 * Spring 使用了AspectJ
 	 */
 	private PointcutExpression buildPointcutExpression(@Nullable ClassLoader classLoader) {
 		PointcutParser parser = initializePointcutParser(classLoader);
@@ -272,6 +281,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 		PointcutExpression pointcutExpression = obtainPointcutExpression();
 		try {
 			try {
+				// 是否匹配
 				return pointcutExpression.couldMatchJoinPointsInType(targetClass);
 			}
 			catch (ReflectionWorldException ex) {
@@ -297,6 +307,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 		// Special handling for this, target, @this, @target, @annotation
 		// in Spring - we can optimize since we know we have exactly this class,
 		// and there will never be matching subclass at runtime.
+		// 是否永久匹配
 		if (shadowMatch.alwaysMatches()) {
 			return true;
 		}
