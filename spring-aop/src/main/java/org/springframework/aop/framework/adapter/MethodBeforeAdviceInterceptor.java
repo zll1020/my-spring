@@ -33,10 +33,16 @@ import org.springframework.util.Assert;
  * @author Rod Johnson
  * @see AfterReturningAdviceInterceptor
  * @see ThrowsAdviceInterceptor
- */
+ * @{link BeforeAdvice} 实现
+ * 所有的 MethodBeforeAdvice 自定义拦截，都是来自MethodBeforeAdviceInterceptor，有多少个MethodBeforeAdvice，就有多少个MethodBeforeAdviceInterceptor
+ * MethodBeforeAdvice包装成MethodBeforeAdviceInterceptor在Spring容器内执行
+ * */
 @SuppressWarnings("serial")
 public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeAdvice, Serializable {
 
+	/**
+	 * 开发人员添加的
+	 */
 	private final MethodBeforeAdvice advice;
 
 
@@ -52,6 +58,7 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeA
 
 	@Override
 	public Object invoke(MethodInvocation mi) throws Throwable {
+		// 添加的 Interceptor 的方法调用
 		this.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis());
 		return mi.proceed();
 	}
