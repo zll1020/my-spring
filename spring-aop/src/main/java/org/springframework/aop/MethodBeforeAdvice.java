@@ -27,6 +27,7 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @see AfterReturningAdvice
  * @see ThrowsAdvice
+ * 方法级别的
  */
 public interface MethodBeforeAdvice extends BeforeAdvice {
 

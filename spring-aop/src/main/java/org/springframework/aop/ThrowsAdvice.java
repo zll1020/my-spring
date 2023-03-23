@@ -47,6 +47,7 @@ package org.springframework.aop;
  * @author Juergen Hoeller
  * @see AfterReturningAdvice
  * @see MethodBeforeAdvice
+ * 异常
  */
 public interface ThrowsAdvice extends AfterAdvice {
 
